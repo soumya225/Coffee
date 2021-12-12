@@ -1,15 +1,16 @@
-package com.example.coffeeit
+package com.example.coffeeit.services
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.coffeeit.models.CoffeeAttributes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class HomeRepository {
-    val apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
+    private val apiInterface: ApiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
 
     fun fetchDeviceDetails(): LiveData<CoffeeAttributes.Result> {
         val data = MutableLiveData<CoffeeAttributes.Result>()

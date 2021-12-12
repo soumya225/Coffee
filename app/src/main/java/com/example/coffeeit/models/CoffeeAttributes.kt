@@ -1,4 +1,4 @@
-package com.example.coffeeit
+package com.example.coffeeit.models
 
 object CoffeeAttributes {
 

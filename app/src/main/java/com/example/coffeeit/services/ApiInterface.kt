@@ -1,5 +1,6 @@
-package com.example.coffeeit
+package com.example.coffeeit.services
 
+import com.example.coffeeit.models.CoffeeAttributes
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

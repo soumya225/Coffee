@@ -2,6 +2,7 @@ package com.example.coffeeit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,8 +13,7 @@ import com.example.coffeeit.models.CoffeeAttributes
 import com.example.coffeeit.models.CoffeeItem
 import com.example.coffeeit.viewmodels.HomeViewModel
 
-
-class MainActivity : AppCompatActivity() {
+class SizeActivity : AppCompatActivity() {
     private lateinit var adapter: CoffeeItemAdapter
     private lateinit var b: ActivityMainBinding
     private lateinit var vm: HomeViewModel
@@ -25,23 +25,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(b.root)
 
         setUpToolbar()
-        setUpScreen()
         setUpAdapter()
 
         vm = ViewModelProvider(this)[HomeViewModel::class.java]
-        vm.fetchDeviceDetails()
-        vm.coffeeAttributesLiveData?.observe(this, Observer {
-            if (it != null){
-                populateList(it)
-                adapter.notifyDataSetChanged()
-            } else{
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun setUpScreen() {
-        b.titleTV.text = resources.getString(R.string.screen_title, "style");
+        if (vm.coffeeAttributesLiveData?.value != null){
+            populateList(vm.coffeeAttributesLiveData?.value!!)
+            adapter.notifyDataSetChanged()
+        } else{
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setUpToolbar() {
@@ -55,13 +47,19 @@ class MainActivity : AppCompatActivity() {
         b.itemsRV.layoutManager = LinearLayoutManager(this)
     }
 
-
     private fun populateList(result: CoffeeAttributes.Result) {
-        for (i in result.types){
+        val coffeeTypeName = intent.extras!!.get("typeCategory").toString()
+        val coffeeType = result.types.findLast { it.name == coffeeTypeName }
+        if (coffeeType != null) {
+            for (i in coffeeType.sizes){
+                val size = result.sizes.findLast { it._id == i }
 
-            val coffeeItem = CoffeeItem(name = i.name, typeCategory = i.name)
+                val coffeeItem = size?.let { CoffeeItem(name = it.name, typeCategory = coffeeType.name) }
 
-            coffeeItemList.add(coffeeItem)
+                if (coffeeItem != null) {
+                    coffeeItemList.add(coffeeItem)
+                }
+            }
         }
     }
 }

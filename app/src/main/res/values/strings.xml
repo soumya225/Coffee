@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Brew with Lex</string>
+    <string name="alt_app_name">Dark Roasted Beans</string>
+    <string name="screen_title">Select your %1$s</string>
+    <string name="welcome_message">Tap the machine to start</string>
+    <string name="how_does_this_work"><u>How does this work?</u></string>
 </resources>
