@@ -17,18 +17,9 @@ class WelcomeActivity : AppCompatActivity() {
         b = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        setUpToolbar()
-
         b.layoutLL.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             this.startActivity(intent)
         }
     }
-
-    private fun setUpToolbar() {
-        setSupportActionBar(b.toolbar)
-        supportActionBar?.title = resources.getString(R.string.alt_app_name)
     }
-
-
-}

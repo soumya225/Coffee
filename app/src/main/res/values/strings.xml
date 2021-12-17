@@ -4,4 +4,8 @@
     <string name="screen_title">Select your %1$s</string>
     <string name="welcome_message">Tap the machine to start</string>
     <string name="how_does_this_work"><u>How does this work?</u></string>
+    <string name="select_your_style">Select your style</string>
+    <string name="select_your_size">Select your size</string>
+    <string name="overview">Overview</string>
+    <string name="brew_your_coffee">Brew your coffee</string>
 </resources>

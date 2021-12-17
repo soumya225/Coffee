@@ -10,9 +10,23 @@ class HomeViewModel : ViewModel(){
     private var homeRepository: HomeRepository?=null
     var coffeeAttributesLiveData : LiveData<CoffeeAttributes.Result>?=null
 
+    private val _chosenStyle = MutableLiveData<String>()
+    val chosenStyle: LiveData<String> = _chosenStyle
+
+    private val _chosenSize = MutableLiveData<String>()
+    val chosenSize: LiveData<String> = _chosenSize
+
     init {
         homeRepository = HomeRepository()
         coffeeAttributesLiveData = MutableLiveData()
+    }
+
+    fun setChosenStyle(desiredStyle: String) {
+        _chosenStyle.value = desiredStyle
+    }
+
+    fun setChosenSize(desiredSize: String) {
+        _chosenSize.value = desiredSize
     }
 
     fun fetchDeviceDetails(){

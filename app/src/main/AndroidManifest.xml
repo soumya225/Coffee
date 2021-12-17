@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeIT">
         <activity
-            android:name=".SizeActivity"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
