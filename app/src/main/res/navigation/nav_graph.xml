@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/styleFragment"
         android:name="com.example.coffeeit.StyleFragment"
-        android:label="fragment_style"
-        tools:layout="@layout/fragment_style" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_style">
         <action
             android:id="@+id/action_styleFragment_to_sizeFragment"
             app:destination="@id/sizeFragment" />
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/sizeFragment"
         android:name="com.example.coffeeit.SizeFragment"
-        android:label="fragment_size"
-        tools:layout="@layout/fragment_size" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_size">
         <action
             android:id="@+id/action_sizeFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
@@ -26,6 +26,13 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.coffeeit.OverviewFragment"
-        android:label="fragment_overview"
-        tools:layout="@layout/fragment_overview" />
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_overview" >
+        <action
+            android:id="@+id/action_overviewFragment_to_sizeFragment"
+            app:destination="@id/sizeFragment" />
+        <action
+            android:id="@+id/action_overviewFragment_to_styleFragment"
+            app:destination="@id/styleFragment" />
+    </fragment>
 </navigation>

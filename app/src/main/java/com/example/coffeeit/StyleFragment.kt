@@ -35,7 +35,6 @@ class StyleFragment : Fragment() {
 
         setUpAdapter()
 
-        sharedViewModel.fetchDeviceDetails()
         sharedViewModel.coffeeAttributesLiveData?.observe(this.viewLifecycleOwner, Observer {
             if (it != null){
                 populateList(it)
