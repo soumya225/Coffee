@@ -12,8 +12,8 @@ import retrofit2.Response
 class HomeRepository {
     private val apiInterface: ApiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
 
-    fun fetchDeviceDetails(): LiveData<CoffeeAttributes.Result> {
-        val data = MutableLiveData<CoffeeAttributes.Result>()
+    fun fetchDeviceDetails(): LiveData<CoffeeAttributes.Result?> {
+        val data = MutableLiveData<CoffeeAttributes.Result?>()
 
         apiInterface.fetchDeviceData().enqueue(object : Callback<CoffeeAttributes.Result> {
 

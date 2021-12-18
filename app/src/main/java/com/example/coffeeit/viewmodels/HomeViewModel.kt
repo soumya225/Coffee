@@ -8,7 +8,7 @@ import com.example.coffeeit.models.CoffeeAttributes
 
 class HomeViewModel : ViewModel(){
     private var homeRepository: HomeRepository?=null
-    var coffeeAttributesLiveData : LiveData<CoffeeAttributes.Result>?=null
+    var coffeeAttributesLiveData : LiveData<CoffeeAttributes.Result?>?=null
 
     private val _chosenStyle = MutableLiveData<String>()
     val chosenStyle: LiveData<String> = _chosenStyle

@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.coffeeit.databinding.ActivityWelcomeBinding
 import android.content.Intent
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.coffeeit.helpers.CoffeeItemAdapter
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var b: ActivityWelcomeBinding
