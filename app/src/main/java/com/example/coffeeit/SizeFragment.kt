@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffeeit.databinding.FragmentSizeBinding
@@ -35,7 +36,13 @@ class SizeFragment : Fragment() {
 
         setUpAdapter()
 
-        populateList(sharedViewModel.coffeeAttributesLiveData?.value)
+        sharedViewModel.coffeeAttributesLiveData?.observe(this.viewLifecycleOwner, Observer {
+            if (it != null){
+                populateList()
+            } else{
+                Toast.makeText(this.activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         return fragmentBinding.root
     }
@@ -58,20 +65,9 @@ class SizeFragment : Fragment() {
     }
 
 
-    private fun populateList(result: CoffeeAttributes.Result?) {
+    private fun populateList() {
         coffeeItemList.clear()
-        val coffeeTypeName = sharedViewModel.chosenStyle.value
-        val coffeeType = result?.types?.findLast { it.name == coffeeTypeName }
-        if (coffeeType != null) {
-            for (i in coffeeType.sizes){
-                val size = result.sizes.findLast { it._id == i }
-
-                val coffeeItem = size?.let { CoffeeItem(name = it.name) }
-
-                if (coffeeItem != null) {
-                    coffeeItemList.add(coffeeItem)
-                }
-            }
-        }
+        coffeeItemList.addAll(sharedViewModel.getSizes())
+        adapter.notifyDataSetChanged()
     }
 }

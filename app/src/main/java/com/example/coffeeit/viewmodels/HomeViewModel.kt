@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coffeeit.services.HomeRepository
 import com.example.coffeeit.models.CoffeeAttributes
+import com.example.coffeeit.models.CoffeeItem
 
 class HomeViewModel : ViewModel(){
     private var homeRepository: HomeRepository?=null
@@ -31,5 +32,35 @@ class HomeViewModel : ViewModel(){
 
     fun fetchDeviceDetails(){
         coffeeAttributesLiveData = homeRepository?.fetchDeviceDetails()
+    }
+
+    fun getStyles(): MutableList<CoffeeItem> {
+        val output = mutableListOf<CoffeeItem>()
+        for (i in coffeeAttributesLiveData?.value?.types!!){
+
+            val coffeeItem = CoffeeItem(name = i.name)
+
+            output.add(coffeeItem)
+        }
+        return output
+    }
+
+    fun getSizes(): MutableList<CoffeeItem> {
+        val coffeeTypeName = chosenStyle.value
+        val result = coffeeAttributesLiveData?.value
+        val output = mutableListOf<CoffeeItem>()
+        val coffeeType = result?.types?.findLast { it.name == coffeeTypeName }
+        if (coffeeType != null) {
+            for (i in coffeeType.sizes){
+                val size = result.sizes.findLast { it._id == i }
+
+                val coffeeItem = size?.let { CoffeeItem(name = it.name) }
+
+                if (coffeeItem != null) {
+                    output.add(coffeeItem)
+                }
+            }
+        }
+        return output
     }
 }

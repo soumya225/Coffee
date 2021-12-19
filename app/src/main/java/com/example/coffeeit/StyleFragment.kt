@@ -37,8 +37,7 @@ class StyleFragment : Fragment() {
 
         sharedViewModel.coffeeAttributesLiveData?.observe(this.viewLifecycleOwner, Observer {
             if (it != null){
-                populateList(it)
-                adapter.notifyDataSetChanged()
+                populateList()
             } else{
                 Toast.makeText(this.activity, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
@@ -64,15 +63,10 @@ class StyleFragment : Fragment() {
         binding?.itemsRV?.layoutManager = LinearLayoutManager(requireContext())
     }
 
-
-    private fun populateList(result: CoffeeAttributes.Result) {
+    private fun populateList() {
         coffeeItemList.clear()
-        for (i in result.types){
-
-            val coffeeItem = CoffeeItem(name = i.name)
-
-            coffeeItemList.add(coffeeItem)
-        }
+        coffeeItemList.addAll(sharedViewModel.getStyles())
+        adapter.notifyDataSetChanged()
     }
 
 
