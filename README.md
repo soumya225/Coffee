@@ -1,9 +1,9 @@
 # CoffeeIT
 
-![Welcome Screen](WelcomeActivity.png)
-![Choose your style](StyleFragment.png)
-![Choose your size](SizeFragment.png)
-![Overview of order](OverviewFragment.png)
+<img src="WelcomeActivity.PNG" alt="Welcome Screen" width="250"/>
+<img src="StyleFragment.PNG" alt="Select your style" width="250"/>
+<img src="SizeFragment.PNG" alt="Select your size" width="250"/>
+<img src="OverviewFragment.PNG" alt="Overview of your order" width="250"/>
 
 Summary:
 - the app uses Retrofit to fetch data from the API
